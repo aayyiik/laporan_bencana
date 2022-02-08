@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BencanaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -22,6 +23,11 @@ use App\Http\Controllers\ProvinsiController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login',[AuthController::class,'index']);
+Route::post('/proses_login',[AuthController::class,'proses_login']);
+Route::get('/logout',[AuthController::class,'logout']);
+
 
 Route::get('/dashboard', [DashboardController::class,'index']);
 
