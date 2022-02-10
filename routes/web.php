@@ -7,7 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriBencanaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
+use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\ProvinsiController;
+use App\Models\Pelaporan;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +26,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login',[AuthController::class,'index']);
-Route::post('/proses_login',[AuthController::class,'proses_login']);
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/postlogin',[AuthController::class,'postlogin'])->name('postlogin');
 Route::get('/logout',[AuthController::class,'logout']);
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['cek_login:admin']], function () {
+        Route::get('/dashboard', [DashboardController::class,'index']);
+  
 
-Route::get('/dashboard', [DashboardController::class,'index']);
+
+
+// ================ DASHBOARD ============== //
 
 //Kategori Bencana//
 Route::get('/kategori_bencana',[KategoriBencanaController::class,'index']);
@@ -51,3 +59,14 @@ Route::post('/provinsi/create',[ProvinsiController::class,'create']);
 Route::get('/kecamatan',[KecamatanController::class,'index']);
 Route::post('/kecamatan/create',[KecamatanController::class,'create']);
 
+//Pelaporan//
+Route::get('/pelaporan',[PelaporanController::class,'index']);
+Route::get('/pelaporan/create',[PelaporanController::class,'create']);
+Route::get('petugas/status/update/{id_lapor}',[PelaporanController::class,'updateStatus']);
+
+//Laporan Korban//
+Route::get('/add/{id_lapor}',[PelaporanController::class,'add']);
+Route::post('add/{id_lapor}/update',[PelaporanController::class,'add_store']);
+
+});
+});

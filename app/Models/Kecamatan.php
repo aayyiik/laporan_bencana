@@ -19,4 +19,7 @@ class Kecamatan extends Model
         return $this->belongsTo(Kota::class, 'id_kota');
     }
 
+    public function lapor(){
+        return $this->hasMany(Pelaporan::class, 'id_lapor');
+    }
 }

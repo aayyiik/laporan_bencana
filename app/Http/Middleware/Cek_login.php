@@ -17,14 +17,15 @@ class Cek_login
      */
     public function handle(Request $request, Closure $next, $roles)
     {
-        if(!Auth::check()){
-            return redirect('/login');
+        if (!Auth::check()){
+            return redirect('login');
         }
         $user = Auth::user();
 
-        if($user->role == $roles)
+        if($user->role == $roles){
             return $next($request);
-
-            return redirect('/login')->with('error',"kamu gak punya akses masuk");
+        }
+         
+        return redirect('login')->with('error',"Anda tidak memiliki akses");
     }
 }

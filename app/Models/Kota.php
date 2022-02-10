@@ -22,4 +22,6 @@ class Kota extends Model
     public function kecamatan(){
         return $this->hasMany(Kecamatan::class,'id_kecamatan');
     }
+
+    
 }

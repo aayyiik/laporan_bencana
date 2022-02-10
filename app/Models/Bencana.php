@@ -18,4 +18,8 @@ class Bencana extends Model
     public function kategori(){
         return $this->belongsTo(KategoriBencana::class, 'id_kategori');
     }
+
+    public function lapor(){
+        return $this->hasMany(Pelaporan::class, 'id_lapor');
+    }
 }
