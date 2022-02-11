@@ -33,12 +33,10 @@
                               <td>{{ $item->provinsi->nama_provinsi }}</td>
                               <td>{{ $item->nama_kota }}</td>
                               <td>
-                                  <a href="/bab/create" class="btn btn-warning rounded-pill">
+                                  <a href="/kota/{{ $item->id_kota }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
-                                  <a href="/bab/create" class="btn btn-danger rounded-pill">
-                                      Hapus
-                                  </a>
+                                 
                               </td>
                           </tbody>
                         @endforeach

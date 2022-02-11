@@ -22,4 +22,24 @@ class BencanaController extends Controller
         Bencana::create($request->all());
         return redirect ('/bencana'); 
     }
+
+    public function edit($id_bencana){
+        $bencana = Bencana::find($id_bencana);
+        $kategori = KategoriBencana::all();
+        return view ('bencana.edit',['bencana'=>$bencana], compact('kategori'));
+    }
+
+    public function update(Request $request, $id_bencana){
+ 
+            $bencana = Bencana::find($id_bencana);
+            $bencana->update($request->all());
+            return redirect ('/bencana');
+        
+    }
+
+    public function delete ($id_bencana){
+        $bencana = Bencana::find($id_bencana);
+        $bencana->delete($bencana);
+        return redirect('/bencana');
+    }
 }

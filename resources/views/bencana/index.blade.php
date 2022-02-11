@@ -33,10 +33,10 @@
                               <td>{{ $item->kategori->jenis_kategori }}</td>
                               <td>{{ $item->nama_bencana }}</td>
                               <td>
-                                  <a href="/bab/create" class="btn btn-warning rounded-pill">
+                                  <a href="/bencana/{{ $item->id_bencana }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
-                                  <a href="/bab/create" class="btn btn-danger rounded-pill">
+                                  <a href="/bencana/{{ $item->id_bencana }}/delete" class="btn btn-danger rounded-pill">
                                       Hapus
                                   </a>
                               </td>

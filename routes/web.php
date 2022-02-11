@@ -9,6 +9,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\UserController;
 use App\Models\Pelaporan;
 
 /*
@@ -45,22 +46,37 @@ Route::group(['middleware' => ['auth']], function () {
 //Kategori Bencana//
 Route::get('/kategori_bencana',[KategoriBencanaController::class,'index']);
 Route::post('/kategori_bencana/create',[KategoriBencanaController::class,'create']);
+Route::get('/kategori/{id_kategori}/edit',[KategoriBencanaController::class,'edit']);
+Route::post('/kategori/{id_kategori}/update',[KategoriBencanaController::class,'update']);
+Route::get('/kategori/{id_kategori}/delete',[KategoriBencanaController::class,'delete']);
 
 //Bencana//
 Route::get('/bencana',[BencanaController::class,'index']);
 Route::post('/bencana/create',[BencanaController::class,'create']);
+Route::get('/bencana/{id_bencana}/edit',[BencanaController::class,'edit']);
+Route::post('/bencana/{id_bencana}/update',[BencanaController::class,'update']);
+Route::get('/bencana/{id_bencana}/delete',[BencanaController::class,'delete']);
 
 //Kota//
 Route::get('/kota',[KotaController::class,'index']);
 Route::post('/kota/create',[KotaController::class,'create']);
+Route::get('/kota/{id_kota}/edit',[KotaController::class,'edit']);
+Route::post('/kota/{id_kota}/update',[KotaController::class,'update']);
+Route::get('/kota/{id_kota}/delete',[KotaController::class,'delete']);
 
 //Provinsi//
 Route::get('/provinsi',[ProvinsiController::class,'index']);
 Route::post('/provinsi/create',[ProvinsiController::class,'create']);
+Route::get('/provinsi/{id_provinsi}/edit',[ProvinsiController::class,'edit']);
+Route::post('/provinsi/{id_provinsi}/update',[ProvinsiController::class,'update']);
+Route::get('/provinsi/{id_provinsi}/delete',[ProvinsiController::class,'delete']);
 
 //Kecamatan//
 Route::get('/kecamatan',[KecamatanController::class,'index']);
 Route::post('/kecamatan/create',[KecamatanController::class,'create']);
+Route::get('/kecamatan/{id_kecamatan}/edit',[KecamatanController::class,'edit']);
+Route::post('/kecamatan/{id_kecamatan}/update',[KecamatanController::class,'update']);
+Route::get('/kecamatan/{id_kecamatan}/delete',[KecamatanController::class,'delete']);
 
 //Pelaporan//
 Route::get('/pelaporan',[PelaporanController::class,'index']);
@@ -79,5 +95,10 @@ Route::post('korban/{id_lapor}/update',[PelaporanController::class,'updateKorban
 //rekkap laporan //
 Route::get('/rekap_laporan',[PelaporanController::class,'rekap']);
 Route::get('filter-data/{tgl_awal}/{tgl_akhir}',[PelaporanController::class,'tampildata']);
+
+//Profil//
+Route::get('profilsetting/{id_user}',[UserController::class,'editprofil'])->name('profilsetting');
+Route::post('profil/update/{id_user}',[UserController::class,'updateprofil']);
+
 });
 });

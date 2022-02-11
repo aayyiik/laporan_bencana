@@ -31,12 +31,9 @@
                               <td>{{ $item->id_kategori }}</td>
                               <td>{{ $item->jenis_kategori }}</td>
                               <td>
-                                  <a href="/bab/create" class="btn btn-warning rounded-pill">
+                                  <a href="/kategori/{{ $item->id_kategori }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
-                                  </a>
-                                  <a href="/bab/create" class="btn btn-danger rounded-pill">
-                                      Hapus
-                                  </a>
+                                  
                               </td>
                           </tbody>
                         @endforeach

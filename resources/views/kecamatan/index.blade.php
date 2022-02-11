@@ -33,10 +33,10 @@
                               <td>{{ $item->kota->nama_kota }}</td>
                               <td>{{ $item->nama_kecamatan }}</td>
                               <td>
-                                  <a href="/bab/create" class="btn btn-warning rounded-pill">
+                                  <a href="/kecamatan/{{ $item->id_kecamatan }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
-                                  <a href="/bab/create" class="btn btn-danger rounded-pill">
+                                  <a href="/kecamatan/{{ $item->id_kecamatan }}/delete" class="btn btn-danger rounded-pill">
                                       Hapus
                                   </a>
                               </td>

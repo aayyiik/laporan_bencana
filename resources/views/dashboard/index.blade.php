@@ -5,9 +5,7 @@
 
     <div class="pagetitle">
       <h1>Blank Page</h1>
-      <h1>Login Sebagai:
-       </h1>
-   
+    
         </div><!-- End Page Title -->
             <div class="card">
                 <div class="card-body">

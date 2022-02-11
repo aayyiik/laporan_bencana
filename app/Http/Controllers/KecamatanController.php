@@ -24,4 +24,24 @@ class KecamatanController extends Controller
         Kecamatan::create($request->all());
         return redirect('/kecamatan');
     }
+
+    public function edit($id_kecamatan){
+        $kecamatan = Kecamatan::find($id_kecamatan);
+        $kota = Kota::all();
+        return view ('kecamatan.edit',['kecamatan'=>$kecamatan], compact('kota'));
+    }
+
+    public function update(Request $request, $id_kecamatan){
+ 
+            $kecamatan = Kecamatan::find($id_kecamatan);
+            $kecamatan->update($request->all());
+            return redirect ('/kecamatan');
+        
+    }
+
+    public function delete ($id_kecamatan){
+        $kecamatan = Kecamatan::find($id_kecamatan);
+        $kecamatan->delete($kecamatan);
+        return redirect('/kecamatan');
+    }
 }

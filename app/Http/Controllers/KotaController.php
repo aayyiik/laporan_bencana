@@ -24,4 +24,24 @@ class KotaController extends Controller
         Kota::create($request->all());
         return redirect('/kota');
     }
+
+    public function edit($id_kota){
+        $kota = Kota::find($id_kota);
+        $provinsi = Provinsi::all();
+        return view ('kota.edit',['kota'=>$kota], compact('provinsi'));
+    }
+
+    public function update(Request $request, $id_kota){
+ 
+            $kota = Kota::find($id_kota);
+            $kota->update($request->all());
+            return redirect ('/kota');
+        
+    }
+
+    public function delete ($id_kota){
+        $kota = Kota::find($id_kota);
+        $kota->delete($kota);
+        return redirect('/kota');
+    }
 }

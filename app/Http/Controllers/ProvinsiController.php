@@ -21,4 +21,24 @@ class ProvinsiController extends Controller
         Provinsi::create($request->all());
         return redirect('/provinsi');
     }
+
+
+    public function edit($id_provinsi){
+        $provinsi = Provinsi::find($id_provinsi);
+        return view ('provinsi.edit',['provinsi'=>$provinsi]);
+    }
+
+    public function update(Request $request, $id_provinsi){
+ 
+            $provinsi = Provinsi::find($id_provinsi);
+            $provinsi->update($request->all());
+            return redirect ('/provinsi');
+        
+    }
+
+    public function delete ($id_provinsi){
+        $provinsi = Provinsi::find($id_provinsi);
+        $provinsi->delete($provinsi);
+        return redirect('/provinsi');
+    }
 }
