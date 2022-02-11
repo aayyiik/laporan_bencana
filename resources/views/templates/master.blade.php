@@ -92,7 +92,9 @@
   <script src="{{ asset('assets/js/main.js') }}"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
+  
   @stack('js')
+
 
 </body>
 

@@ -31,13 +31,16 @@ Route::post('/postlogin',[AuthController::class,'postlogin'])->name('postlogin')
 Route::get('/logout',[AuthController::class,'logout']);
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['cek_login:admin']], function () {
+    Route::group(['middleware' => ['cek_login:petugas']], function () {
         Route::get('/dashboard', [DashboardController::class,'index']);
   
 
 
 
 // ================ DASHBOARD ============== //
+
+// User //
+// Petugas //
 
 //Kategori Bencana//
 Route::get('/kategori_bencana',[KategoriBencanaController::class,'index']);
@@ -62,11 +65,19 @@ Route::post('/kecamatan/create',[KecamatanController::class,'create']);
 //Pelaporan//
 Route::get('/pelaporan',[PelaporanController::class,'index']);
 Route::get('/pelaporan/create',[PelaporanController::class,'create']);
+Route::get('pelaporan/{id_lapor}/edit',[PelaporanController::class,'edit']);
+Route::post('pelaporan/{id_lapor}/update',[PelaporanController::class,'update']);
+Route::get('pelaporan/{id_lapor}/delete',[PelaporanController::class,'delete']);
 Route::get('petugas/status/update/{id_lapor}',[PelaporanController::class,'updateStatus']);
 
 //Laporan Korban//
 Route::get('/add/{id_lapor}',[PelaporanController::class,'add']);
 Route::post('add/{id_lapor}/update',[PelaporanController::class,'add_store']);
+Route::get('korban/{id_lapor}/edit',[PelaporanController::class,'editKorban']);
+Route::post('korban/{id_lapor}/update',[PelaporanController::class,'updateKorban']);
 
+//rekkap laporan //
+Route::get('/rekap_laporan',[PelaporanController::class,'rekap']);
+Route::get('filter-data/{tgl_awal}/{tgl_akhir}',[PelaporanController::class,'tampildata']);
 });
 });
