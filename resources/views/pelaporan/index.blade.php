@@ -4,14 +4,14 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Kecamatan</h1>
+      <h1>Laporan</h1>
    
         </div><!-- End Page Title -->
 
             <div class="card">
                 <div class="card-body">
 
-                    <h5 class="card-title">Tabel Kecamatan</h5>
+                    <h5 class="card-title">Tabel Pelaporan</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
                         Tambah
                       </button>
@@ -55,10 +55,10 @@
                               
                               <td>
                                 @if(auth()->user()->role != 'admin')
-                                  <a href="/korban/{{ $item->id_lapor }}/edit" class="btn btn-warning rounded-pill">
+                                  <a href="/pelaporan/{{ $item->id_lapor }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
-                                  <a href="/bab/create" class="btn btn-danger rounded-pill">
+                                  <a href="/pelaporan/{{ $item->id_lapor }}/delete" class="btn btn-danger rounded-pill">
                                       Hapus
                                   </a>
                                   @endif
@@ -91,13 +91,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="/kota/create" method="POST">
+            <form action="/pelaporan/create" method="POST">
             @csrf
 
             <div class="row mb-3">
               <label for="inputText" class="col-sm-2 col-form-label">Nama Pelapor</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="id_user" value="{{ Auth::user()->nama }}">
+                <input type="hidden" class="form-control" name="id_warga" value="{{ Auth::user()->id_user }}">
               </div>
             </div>
 

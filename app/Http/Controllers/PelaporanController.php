@@ -23,8 +23,9 @@ class PelaporanController extends Controller
 
     public function create(Request $request){
         $lapor = new Pelaporan;
-        $lapor->id_user = $request['id_user'];
+        $lapor->id_warga = $request['id_warga'];
         $lapor->id_bencana = $request['id_bencana'];
+        $lapor->id_kecamatan = $request['id_kecamatan'];
         $lapor->waktu = $request['waktu'];
         $lapor->status = 0;
         $lapor->save();
@@ -35,7 +36,7 @@ class PelaporanController extends Controller
 
     public function add($id_lapor){
         $lapor = Pelaporan::find($id_lapor);
-        return view('pelaporan.add', ['lapor'=>$lapor]);
+        return view('pelaporan.korban.add', ['lapor'=>$lapor]);
     }
 
     public function add_store(Request $request, $id){

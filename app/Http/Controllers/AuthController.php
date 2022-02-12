@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
@@ -14,33 +15,6 @@ class AuthController extends Controller
     }
 
     public function postlogin(Request $request){
-
-        // $this->validate($request, [
-        //     'email' => 'required',
-        //     'password' => 'required',
-        // ]);
-
-        // dd($request->all());
-        
-        // $user = $request->only('email','password');
-
-        //     if (Auth::attempt($user)) {
-        //         $user = Auth::user();
-        //         if ($user->role == 'warga') {
-        //             return redirect('/dashboard');
-        //         }elseif ($user->role == 'petugas') { 
-        //             return redirect('/dashboard');
-        //         }elseif ($user->role == 'admin') {
-        //             return redirect('/dashboard');
-        //         }
-        //         return redirect()->intended('/');
-
-                
-        //     }
-
-        //     return redirect('/login')
-        //         ->withInput()
-        //         ->withErrors(['login_gagal'=> 'maap gan, login nya gagal.']);
 
         $this->validate($request, [
             'email'=>'required',
@@ -56,6 +30,8 @@ class AuthController extends Controller
                 return redirect('/dashboard');
             }elseif($user->role == 'petugas'){
                 return redirect ('/dashboard');
+            }elseif($user->role == 'warga'){
+                return redirect('/dashboard');
             }
 
             return redirect()->intended('/');
@@ -72,6 +48,25 @@ class AuthController extends Controller
                 Auth::logout();
                 return redirect('/login');
 
+            }
+
+            public function register(){
+                return view('auth.register');
+            }
+
+            public function postregister(Request $request){
+     
+                User::create([
+        
+                    'role' => 'warga',
+                    'nama' => request('nama'),
+                    'tgl_lahir' => request('tgl_lahir'),
+                    'email' => request('email'),    
+                    'password'=>bcrypt($request->password),
+                    'remember_token' => Str::random(10),
+               ]);
+              
+              return redirect ('/login');
             }
    
 }
