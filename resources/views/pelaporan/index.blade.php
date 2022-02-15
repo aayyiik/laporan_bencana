@@ -58,12 +58,9 @@
                                   <a href="/pelaporan/{{ $item->id_lapor }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
-                                  <a href="/pelaporan/{{ $item->id_lapor }}/delete" class="btn btn-danger rounded-pill">
-                                      Hapus
-                                  </a>
                                   @endif
                                   
-                                  <a href="/bab/create" class="btn btn-secondary rounded-pill">
+                                  <a href="/list/{{$item->id_lapor}}/korban" class="btn btn-secondary rounded-pill">
                                     Detail
                                   </a>
                                 
@@ -93,13 +90,11 @@
         <div class="modal-body">
             <form action="/pelaporan/create" method="POST">
             @csrf
-
-            <div class="row mb-3">
-              <label for="inputText" class="col-sm-2 col-form-label">Nama Pelapor</label>
+         
               <div class="col-sm-10">
                 <input type="hidden" class="form-control" name="id_warga" value="{{ Auth::user()->id_user }}">
               </div>
-            </div>
+            
 
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Bencana</label>

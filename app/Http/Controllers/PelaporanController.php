@@ -34,6 +34,19 @@ class PelaporanController extends Controller
 
     }
 
+    public function edit($id_lapor){
+        $lapor = Pelaporan::find($id_lapor);
+        $bencana = Bencana::all();
+        $kecamatan = Kecamatan::all();
+        return view ('pelaporan.edit',['lapor'=>$lapor],compact('bencana','kecamatan'));
+    }
+
+    public function update(Request $request, $id_lapor){
+        $lapor =  Pelaporan::find($id_lapor);
+        $lapor->update($request->all());
+        return redirect('/pelaporan');
+    }
+
     public function add($id_lapor){
         $lapor = Pelaporan::find($id_lapor);
         return view('pelaporan.korban.add', ['lapor'=>$lapor]);
@@ -77,6 +90,11 @@ class PelaporanController extends Controller
         return redirect('/pelaporan');
     }
 
+    public function list($id_lapor){
+        $lapor = Pelaporan::find($id_lapor);
+        $detail = DetailKorban::where('id_lapor','=',$id_lapor)->get();
+        return view('pelaporan.korban.list',['detail'=>$detail], compact('lapor'));
+    }
     public function editKorban($id_lapor){
         $korban = DetailKorban::where('id_lapor','=',$id_lapor)->get();
 

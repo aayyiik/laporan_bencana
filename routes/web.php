@@ -36,17 +36,12 @@ Route::post('/postregister',[AuthController::class,'postregister']);
 
 Route::get('/dashboard', [DashboardController::class,'index']);
 
+//Profil//
+Route::get('profilsetting/{id_user}',[UserController::class,'editprofil'])->name('profilsetting');
+Route::post('profil/update/{id_user}',[UserController::class,'updateprofil']);
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['cek_login:petugas']], function () {
-      
-  
-
-
-
-// ================ DASHBOARD ============== //
-
-// User //
-// Petugas //
+    Route::group(['middleware' => ['cek_login:admin']], function () {
 
 //Kategori Bencana//
 Route::get('/kategori_bencana',[KategoriBencanaController::class,'index']);
@@ -86,6 +81,11 @@ Route::get('/kecamatan/{id_kecamatan}/delete',[KecamatanController::class,'delet
 
 
 
+});
+
+
+Route::group(['middleware' => ['cek_login:petugas']], function () {
+
 //Laporan Korban//
 Route::get('/add/{id_lapor}',[PelaporanController::class,'add']);
 Route::post('add/{id_lapor}/update',[PelaporanController::class,'add_store']);
@@ -93,25 +93,21 @@ Route::get('korban/{id_lapor}/edit',[PelaporanController::class,'editKorban']);
 Route::post('korban/{id_lapor}/update',[PelaporanController::class,'updateKorban']);
 Route::get('petugas/status/update/{id_lapor}',[PelaporanController::class,'updateStatus']);
 
-//rekkap laporan //
+//rekap laporan //
 Route::get('/rekap_laporan',[PelaporanController::class,'rekap']);
 Route::get('filter-data/{tgl_awal}/{tgl_akhir}',[PelaporanController::class,'tampildata']);
-
-//Profil//
-Route::get('profilsetting/{id_user}',[UserController::class,'editprofil'])->name('profilsetting');
-Route::post('profil/update/{id_user}',[UserController::class,'updateprofil']);
-
 });
-Route::group(['middleware' => ['cek_login:admin']], function () {
 
-    });
-
-    Route::group(['middleware' => ['cek_login:warga']], function () {
         //Pelaporan//
         Route::get('/pelaporan',[PelaporanController::class,'index']);
         Route::post('/pelaporan/create',[PelaporanController::class,'create']);
         Route::get('pelaporan/{id_lapor}/edit',[PelaporanController::class,'edit']);
         Route::post('pelaporan/{id_lapor}/update',[PelaporanController::class,'update']);
         Route::get('pelaporan/{id_lapor}/delete',[PelaporanController::class,'delete']);
-    });
+
+        Route::get('list/{id_lapor}/korban',[PelaporanController::class,'list']);
+
+   
+
+
 });

@@ -11,6 +11,16 @@
       
       <!-- End Dashboard Nav -->
 
+      @if(auth()->user()->role=='petugas')
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/rekap_laporan">
+          <i class="bi bi-grid"></i>
+          <span>Rekap Laporan</span>
+        </a>
+      </li>
+
+      @endif
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Detail Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -18,18 +28,23 @@
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="/pelaporan">
-              <i class="bi bi-circle"></i><span>Pelaporan</span>
+              <i class="bi bi-circle"></i><span>Seluruh Pelaporan</span>
             </a>
           </li>
+
+          @if(auth()->user()->role=='warga')
           <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Detail Laporan</span>
+            <a href="/pelaporan">
+              <i class="bi bi-circle"></i><span>Histori Laporan</span>
             </a>
           </li>
+          @endif
         </ul>
       </li>
       
-      
+
+
+      @if(auth()->user()->role=='admin')
       <li class="nav-item">
         <a class="nav-link collapsed" href="/kategori_bencana">
           <i class="bi bi-grid"></i>
@@ -37,6 +52,7 @@
         </a>
       </li>
 
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="/bencana">
           <i class="bi bi-grid"></i>
@@ -65,12 +81,9 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/rekap_laporan">
-          <i class="bi bi-grid"></i>
-          <span>Rekap Laporan</span>
-        </a>
-      </li>
+      @endif
+
+      
 
       <!-- End Tables Nav -->
 
