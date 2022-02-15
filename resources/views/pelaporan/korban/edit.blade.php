@@ -4,63 +4,61 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Blank Page</h1>
+      <h1>Edit Page</h1>
    
         </div><!-- End Page Title -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Example Card</h5>
-                    <form action="/add/update" method="POST">
+                    <h5 class="card-title">Data Korban</h5>
+                    <form action="/korban/{{ $korban->id_detail }}/update" method="POST">
                         @csrf
-                     
-                        @foreach ($korban as $item)
-                        
+                      
                         <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">NIK</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="NIK[0]" value="{{ $item->NIK }}">
+                          <input type="text" class="form-control" name="NIK" value="{{ $korban->NIK }}">
                         </div>
                       </div>
 
                       <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nama[0]" value="{{ $item->nama }}">
+                          <input type="text" class="form-control" name="nama" value="{{ $korban->nama }}">
                         </div>
                       </div>
 
                       <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Umur</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="umur[0]" value="{{ $item->umur }}">
+                          <input type="text" class="form-control" name="umur" value="{{ $korban->umur }}">
                         </div>
                       </div>
-                      <p>
+                     
                       <fieldset class="row mb-3">
                         <legend class="col-form-label col-sm-2 pt-0">Jenis Kelamin</legend>
                         <div class="col-sm-10">
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender[]" id="gender1" value="Male"{{$item->gender == 'Male'? 'checked' : ''}}>
+                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="Laki-Laki"{{$korban->gender == 'Laki-Laki'? 'checked' : ''}}>
                             <label class="form-check-label" for="gender1">
-                                Laki-laki
+                                Laki-Laki
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender[]" id="gender2" value="Female"{{$item->gender == 'Female'? 'checked' : ''}}  >
+                            <input class="form-check-input" type="radio" name="gender" id="gender2" value="Perempuan"{{$korban->gender == 'Perempuan'? 'checked' : ''}}  >
                             <label class="form-check-label" for="gender2">
                               Perempuan
                             </label>
                           </div>
                         </fieldset>
-                    </p>
+                    
                           <div class="row mb-3">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Kondisi</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" style="height: 100px" name="kondisi[0]" >{{ $item->kondisi }}</textarea>
+                              <textarea class="form-control" style="height: 100px" name="kondisi" >{{ $korban->kondisi }}</textarea>
                             </div>
                           </div>
                         
-                          @endforeach
+                          
 
                          
 

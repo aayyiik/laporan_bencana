@@ -7,6 +7,7 @@ use App\Models\DetailKorban;
 use App\Models\Kecamatan;
 use App\Models\Pelaporan;
 use App\Models\User;
+use PDF;
 use Countable;
 use GuzzleHttp\RedirectMiddleware;
 use Illuminate\Http\Request;
@@ -19,6 +20,13 @@ class PelaporanController extends Controller
         $bencana = Bencana::all();
         $kecamatan = Kecamatan::all();
         return view('pelaporan.index',['lapor'=>$lapor], compact('bencana','kecamatan'));
+    }
+
+    public function histori($id_user){
+        $bencana = Bencana::all();
+        $kecamatan = Kecamatan::all();
+        $lapor = Pelaporan::where('id_warga','=',Auth::user()->id_user)->get();
+        return view('pelaporan.histori',['lapor'=>$lapor], compact('bencana','kecamatan'));
     }
 
     public function create(Request $request){
@@ -95,10 +103,16 @@ class PelaporanController extends Controller
         $detail = DetailKorban::where('id_lapor','=',$id_lapor)->get();
         return view('pelaporan.korban.list',['detail'=>$detail], compact('lapor'));
     }
-    public function editKorban($id_lapor){
-        $korban = DetailKorban::where('id_lapor','=',$id_lapor)->get();
+    public function editKorban($id_detail){
+        $korban = DetailKorban::find($id_detail);
 
         return view ('pelaporan.korban.edit',['korban'=>$korban]);
+    }
+
+    public function updateKorban(Request $request, $id_detail){
+        $korban = DetailKorban::find($id_detail);
+        $korban->update($request->all());
+        return redirect('/pelaporan');
     }
 
     public function rekap(){
@@ -110,4 +124,6 @@ class PelaporanController extends Controller
         $lapor = Pelaporan::whereBetween('waktu',[$tgl_awal,$tgl_akhir . ' 23:59:59'])->orderBy('waktu','asc')->get();
         return view ('rekap.after',['lapor'=>$lapor]);
     }
+
+    
 }

@@ -12,10 +12,8 @@
                 <div class="card-body">
 
                     <h5 class="card-title">Tabel Pelaporan</h5>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
-                        Tambah
-                      </button>
-                    <br><br>
+                    
+                      
 
                     <table class="table table-bordered border-primary">
                         <thead>
@@ -43,10 +41,12 @@
                               
                     
                               <td>
-                                @if(auth()->user()->role != 'admin')
-                                  <a href="/pelaporan/{{ $item->id_lapor }}/edit" class="btn btn-warning rounded-pill">
+                                @if(auth()->user()->role == 'petugas')
+                                  <a href="/korban/{{ $item->id_detail }}/edit" class="btn btn-warning rounded-pill">
                                       Edit
                                   </a>
+
+                                 
                                   @endif
                                 
                           </tbody>

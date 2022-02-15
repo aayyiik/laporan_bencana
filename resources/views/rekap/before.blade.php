@@ -5,8 +5,6 @@
 
     <div class="pagetitle">
       <h1>Laporan</h1>
-     
-   
         </div><!-- End Page Title -->
             <div class="card">
                 <div class="card-body">
@@ -27,7 +25,7 @@
                     <a class="btn btn-info" href="" onclick="this.href='/filter-data/'+document.getElementById('tgl_awal').value+ '/' + document.getElementById('tgl_akhir').value"
                     class="btn btn-primary">Search</a>
 
-                 
+                    
                      
                 </div>
             </div>

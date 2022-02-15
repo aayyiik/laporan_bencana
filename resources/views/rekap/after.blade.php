@@ -23,9 +23,10 @@
                             required>
                     </div>
 
-                    
+                    <br>
                     <a class="btn btn-info" href="" onclick="this.href='/filter-data/'+document.getElementById('tgl_awal').value+ '/' + document.getElementById('tgl_akhir').value"
                     class="btn btn-primary">Search</a>
+                    <br><br>
 
                     <table class="table table-bordered border-primary">
                         <thead>
@@ -52,7 +53,7 @@
                                 ? 'Telah Divalidasi' : 'Menunggu Divalidasi' }}</label></td>
                                 
                               @if ($item->status == 1)
-                                <td>Telah disetujui oleh petugas Unit 03</td>
+                                <td>Telah disetujui oleh petugas</td>
                               @else
                                 <td>Menunggu disetujui petugas</td>
                               
