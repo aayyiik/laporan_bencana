@@ -2,13 +2,34 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      @if(auth()->user()->role=='warga')
       <li class="nav-item">
         <a class="nav-link collapsed" href="/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li>
-      
+     @endif
+
+     @if(auth()->user()->role=='petugas')
+     <li class="nav-item">
+       <a class="nav-link collapsed" href="/dashboard_petugas">
+         <i class="bi bi-grid"></i>
+         <span>Dashboard</span>
+       </a>
+     </li>
+    @endif
+
+    @if(auth()->user()->role=='admin')
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/dashboard_admin">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+     @endif
+
+
       <!-- End Dashboard Nav -->
 
       @if(auth()->user()->role=='petugas')

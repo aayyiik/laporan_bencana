@@ -22,7 +22,11 @@ class DashboardController extends Controller
     public function dashboardPetugas(){
         $lapor  = Pelaporan::count();
         $korban = DetailKorban::count();
-        return view('dashboard.petugas',compact('lapor','korban'));
+        $luka_ringan = DetailKorban::where('kondisi','=','Luka Ringan')->get()->count();
+        $luka_berat = DetailKorban::where('kondisi','=','Luka Berat')->get()->count();
+        $meninggal = DetailKorban::where('kondisi','=','Meninggal')->get()->count();
+        $selamat = DetailKorban::where('kondisi','=','LSelamat')->get()->count();
+        return view('dashboard.petugas',compact('lapor','korban','luka_ringan','luka_berat','meninggal','selamat'));
     }
 
     public function dashboardAdmin(){
